@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -14,12 +13,7 @@ connection.once("open", function () {
   console.log("MongoDB database connection established");
 });
 
-module.exports = {
-  mongoose: mongoose,
-  connection: connection,
-};
-
-app.use(bodyParser.json()); // for parsing application/json
+app.use(express.json()); // for parsing application/json
 
 // load routes
 app.use("/api/users", require("./routes/api/users"));
